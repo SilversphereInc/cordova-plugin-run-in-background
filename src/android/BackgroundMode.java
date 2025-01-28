@@ -36,6 +36,7 @@ import org.json.JSONObject;
 import de.appplant.cordova.plugin.background.ForegroundService.ForegroundBinder;
 
 import static android.content.Context.BIND_AUTO_CREATE;
+import static android.content.Context.RECEIVER_EXPORTED;
 import static de.appplant.cordova.plugin.background.BackgroundModeExt.clearKeyguardFlags;
 
 public class BackgroundMode extends CordovaPlugin {
@@ -83,7 +84,7 @@ public class BackgroundMode extends CordovaPlugin {
         super.initialize(cordova, webView);
         IntentFilter filter = new IntentFilter();
         filter.addAction("com.backgroundmode.close" + cordova.getContext().getPackageName());
-        cordova.getActivity().registerReceiver(receiver, filter);
+        cordova.getActivity().registerReceiver(receiver, filter, RECEIVER_EXPORTED);
 
     }
 
